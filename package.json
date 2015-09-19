@@ -1,0 +1,18 @@
+{
+  "name": "Peanut-markdown-editor",
+  "version": "0.0.0",
+  "description": "a simple cross platform app",
+  "main": "index.js",
+  "dependencies": {
+    "electron-prebuilt": "~0.33.0",
+    "marked": "~0.3.5",
+    "electron-prebuilt": "~0.3.5",
+    "markdown": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "stagfoo",
+  "license": "BSD-2-Clause"
+}
