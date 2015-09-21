@@ -8,6 +8,9 @@
 		<title>Peanut!</title>
 	
 		<!-- Bootstrap CSS -->
+		<!-- <link rel="stylesheet" type="text/css" href="github-markdown.css"/> -->
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 		<style>
 		body,#wrap {
@@ -15,6 +18,7 @@
 			margin: 0;
 			padding: 0;
 			width:100vw;
+			max-width: 100%;
 		}
 		#writer,
 		#preview {
@@ -29,14 +33,16 @@
 		#writer {
 			font-family: 'Roboto Slab', serif;
 			font-weight: bold;
+			background:#efefef;
 
 		}
 		#preview {
 			font-family: 'Roboto', sans-serif;
 		}
 		#writer:focus {
-			background:#efefef;
+			
 		}
+
 		textarea {
 			width:100%;
 			border:0px;
@@ -46,7 +52,9 @@
 		textarea:focus{
 			outline: none;
 		}
-
+		button {
+			display:none;
+		}
 		</style>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,8 +64,11 @@
 		<![endif]-->
 	</head>
 	<body>
-
+	
 	<div id="wrapper">
+	<button id="open_file">Open File</button> 
+	<button id="save_file">save File</button> 
+
 			<textarea id="writer"  rows="10"></textarea>
 			<div id="preview">
 				
@@ -70,6 +81,7 @@
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
 		
 	</body>
 </html>
