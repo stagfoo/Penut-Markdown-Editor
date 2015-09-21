@@ -1,4 +1,16 @@
-var fs = require('fs')
+//Fs file system
+var fs = require('fs');
+//used to create the menu
+var remote = require('remote'); 
+var dialog = remote.require('dialog'); 
+//Gets the markdown info
+var doc = document.getElementById('writer');
+var preview_bucket = document.getElementById('preview');
+//creates buttons to save the document(not used currently)
+var open_btn = document.getElementById('open_file');
+var save_btn = document.getElementById('save_file');
+
+//Parse Markdown
 var markdown = require( "markdown" ).markdown;
 var marked = require('marked');
 var md = require('markdown-it')({
@@ -6,11 +18,9 @@ var md = require('markdown-it')({
   linkify: true,
   typographer: true
 });
-
+//emoji with twitter emojis
 var emoji = require('markdown-it-emoji');
-var twemoji = require('twemoji')
-
-
+var twemoji = require('twemoji');
 md.use(emoji);
 md.use(require('markdown-it-highlightjs'),{
 	auto:'true',
@@ -23,23 +33,14 @@ md.renderer.rules.emoji = function(token, idx) {
 };
 
 
-var remote = require('remote'); 
-var dialog = remote.require('dialog'); 
 
-// SETUP MARKDOWN OPTIONS
-
-
-
-var doc = document.getElementById('writer');
-var preview_bucket = document.getElementById('preview');
-var open_btn = document.getElementById('open_file');
-var save_btn = document.getElementById('save_file');
-
+//Updates Preview 
 function updatePreview(doc){
 var preview = md.render(doc);
 preview_bucket.innerHTML = preview;
-// alert(preview);
 }
+
+//Opens a file and puts it into the text area
 function openFile(editor){
 	dialog.showOpenDialog({ filters: [
    { name: 'text', extensions: ['md'] }
@@ -53,6 +54,7 @@ function openFile(editor){
  	});
 }
 
+//save file to disk
 function saveFile(editor){
 	dialog.showSaveDialog(function (fileName) {
     if (fileName === undefined) return;
@@ -60,6 +62,8 @@ function saveFile(editor){
     });
   }); 
 }
+//save HTML file to disk 
+// TODO: add wrapper for styles and highlightjs
 function saveFilePreview(editor){
 	dialog.showSaveDialog(function (fileName) {
     if (fileName === undefined) return;
