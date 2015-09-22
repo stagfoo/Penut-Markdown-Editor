@@ -12,7 +12,10 @@
     "markdown-it-sub": "^1.0.0",
     "marked": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "markdown-it-highlightjs": "^2.0.0",
+    "twemoji": "^1.4.1"
+  },
   "scripts": {
     "start": "electron ."
   },
