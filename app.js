@@ -106,7 +106,7 @@ window.addEventListener('contextmenu', function (e) {
   menu.popup(remote.getCurrentWindow());
 }, false);
 
-var main_menu = new Menu();
+// var main_menu = new Menu();
 
 
-Menu.setApplicationMenu(main_menu);
+// Menu.setApplicationMenu(main_menu);
