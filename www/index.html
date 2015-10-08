@@ -28,13 +28,14 @@
 			padding:1em;
 			/*border:1px solid #000;*/
 			display: inline-block;
-			margin: 0;
+			margin: 6vh 0 0 0;
 			float:left;
 		}
 		#writer {
 			font-family: 'Roboto Slab', serif;
 			font-weight: bold;
-			background:#efefef;
+			/*background:#efefef;*/
+			border-right:1px solid #efefef;
 
 		}
 		#preview {
@@ -47,11 +48,41 @@
 			height:6vh;
 			color:#000;
 			line-height: 6vh;
-			display:none;
+			border-bottom:1px solid #efefef;
+			position: fixed;
+			width:100%;
+			background:#fff;
+			/*display:none;*/
+
+		}
+		#toolbar ul {
+			padding:0px;
+			margin:0px;
+			width:49vw;
+		}
+		#toolbar li {
+			display:inline-block;
+			list-style:none;
+			width:9.5%;
+			text-align: center;
 
 		}
 		#toolbar i {
+			color:#8a7469;
 			vertical-align:middle;
+			cursor: pointer;
+			transition:0.2s all ease;
+			border-radius: 100%;
+
+		}
+		#toolbar i:active {
+			background:#8a7469;
+
+			color:#f0df91;
+
+			/*transition:0.5s all ease;*/
+
+
 		}
 		pre {
 			background:#fff;
@@ -63,15 +94,15 @@
 			font-size:1.3em;
 			line-height: 1.7em;
 		}
-		textarea:focus{
+		div:focus{
 			outline: none;
 		}
 		button {
 			display:none;
 		}
-		.emoji {
+		/*.emoji {
   			height: 1.2em;
-		}
+		}*/
 		</style>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,15 +115,42 @@
 	
 	<div id="wrapper">
 	<div id="toolbar">
-		
-		<!-- <i class="material-icons">&#xE902;</i> -->
-		<i class="material-icons">&#xE24E;</i>
-		
-	</div>
-	<button id="open_file">Open File</button> 
-	<button id="save_file">save File</button> 
 
-			<textarea id="writer"  rows="100"></textarea>
+	<ul class=" pull-left">
+
+<li>		<i class="material-icons ">format_italic</i></li>
+<li>		<i class="material-icons ">link</i></li>
+<li>		<i class="material-icons ">text_format</i></li>
+<li>		<i class="material-icons ">list</i></li>
+<li>		<i class="material-icons ">format_quote</i></li>
+<li>		<i class="material-icons ">image</i></li>
+
+<li>		<i class="material-icons ">tag_faces</i></li>
+<li>		<i class="material-icons ">code</i></li>
+<li>		<i class="material-icons ">add_box</i></li>
+
+</ul>
+<ul class="pull-right">
+<li class="pull-right">		<i id="save_file" class="material-icons ">save</i></li>
+<li class="pull-right">		<i id="export_file" class="material-icons">exit_to_app</i></li>
+
+<li class="pull-right"><i id="open_file" class="material-icons" >folder_open</i></li>
+<li class="pull-right">		<i  class="material-icons">settings</i></li>
+</ul>
+</div>
+	<!-- <button id="open_file">Open File</button> 
+	<button >save File</button>  -->
+
+			<div id="writer" contentEditable="true" >
+				# Hi, This is Peanut <br>
+`notes in a nutshell.`
+<br><br>
+A markdown editor built for fun and to learn eletron. I also plan to release it for sale on windows and mac but free on linux because linux is the best. 
+<br>
+ ![img](http://www.babymed.com/sites/default/files/shutterstock_peanuts.jpg) 
+<br><br><br>
+## Enjoy :smile:
+			</div>
 			<div id="preview">
 				
 			</div>

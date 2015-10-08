@@ -9,6 +9,8 @@ var preview_bucket = document.getElementById('preview');
 //creates buttons to save the document(not used currently)
 var open_btn = document.getElementById('open_file');
 var save_btn = document.getElementById('save_file');
+var export_btn = document.getElementById('export_file');
+
 var export_doc;
 //Parse Markdown
 var markdown = require( "markdown" ).markdown;
@@ -47,8 +49,8 @@ function openFile(editor){
   if (fileNames === undefined) return;
   var fileName = fileNames[0];
   fs.readFile(fileName, 'utf-8', function (err, data) {
-   	editor.value = data;
-   	updatePreview(editor.value);
+   	editor.innerHTML = data;
+   	updatePreview(editor.innerHTML);
  		});
  	});
 }
@@ -57,7 +59,7 @@ function openFile(editor){
 function saveFile(editor){
 	dialog.showSaveDialog(function (fileName) {
     if (fileName === undefined) return;
-    fs.writeFile(fileName, editor.value, function (err) {   
+    fs.writeFile(fileName, editor.innerHTML, function (err) {   
     });
   }); 
 }
@@ -99,7 +101,7 @@ function saveFilePreview(editor){
 
 doc.addEventListener('input', function()
 {
-	updatePreview(doc.value)
+	updatePreview(doc.innerText)
 });
 
 save_btn.addEventListener('click', function()
@@ -110,6 +112,11 @@ save_btn.addEventListener('click', function()
 open_btn.addEventListener('click', function()
 {
 	 openFile(doc)
+ }); 
+
+export_btn.addEventListener('click', function()
+{
+   saveFilePreview(document.getElementById('preview'));
  }); 
 
 /*========================================
