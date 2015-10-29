@@ -8,11 +8,10 @@
             <title>Peanut - Notes in a Nutshell</title>
 
             <!-- Bootstrap CSS -->
-            <!-- <link rel="stylesheet" type="text/css" href="github-markdown.css"/> -->
+            <link rel="stylesheet" type="text/css" href="github-markdown.css"/>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/googlecode.min.css">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                 rel="stylesheet">
-               
                 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
                 <style>
                 *::-webkit-scrollbar { width: 0 !important }
@@ -170,15 +169,13 @@ using the simple language of markdown to help you make easier to read fast notes
                     </div>
                 </div>
                 <script>
-                require('desktop-run.js');
-                
+                require(process.cwd() + '/res/js/electron.js');
+                console.log(__dirname);
                 </script>
                 <!-- jQuery -->
-                 <script type="text/javascript">
-                 require('jquery');
-                 </script>
+                <script src="http://code.jquery.com/jquery.js"></script>
                 <!-- Bootstrap JavaScript -->
-                <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+                <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
                 <!-- <script src="https//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script> -->
 
             </body>
