@@ -10,6 +10,7 @@ var dialog = remote.require('dialog');
 var doc = document.getElementById('writer');
 var preview_bucket = document.getElementById('preview');
 
+//TODO: Setup Color Coding.
 // codemirror.fromTextArea(doc, {
 //     lineNumbers: true,
 //     mode: 'GFM'
