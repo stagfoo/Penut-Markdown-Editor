@@ -70,8 +70,8 @@ text-shadow:none;
 
 .page-header {
   font-family:'Porto 400', Helvetica, Arial, sans-serif;
-  color: #000 !important;
-  text-shadow:4px 2px 0px #fff;
+  color: #000;
+text-shadow:4px 2px 0px #fff;
   text-align: center;
   background-color: #ffea15;
 
