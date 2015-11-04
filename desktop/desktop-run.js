@@ -99,7 +99,9 @@ function openFile(editor){
 
 //save file to disk
 function saveFile(editor){
-	dialog.showSaveDialog(function (fileName) {
+	 dialog.showSaveDialog({ filters: [
+     { name: 'text', extensions: ['md'] }
+    ]}, function (fileName) {
     if (fileName === undefined) return;
     fs.writeFile(fileName, editor.value, function (err) {   
     });
