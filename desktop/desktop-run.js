@@ -76,9 +76,6 @@ function insertAtCaret(text) {
 }
 
 
-
-
-
 //Updates Preview 
 function updatePreview(doc){
 var preview = md.render(doc);
@@ -93,8 +90,9 @@ function openFile(editor){
   if (fileNames === undefined) return;
   var fileName = fileNames[0];
   fs.readFile(fileName, 'utf-8', function (err, data) {
-   	editor.innerHTML = data;  
-   	updatePreview(editor.innerHTML);
+   	editor.text = data; 
+    editor.value = data;  
+   	updatePreview(editor.text);
  		});
  	});
 }
@@ -103,7 +101,7 @@ function openFile(editor){
 function saveFile(editor){
 	dialog.showSaveDialog(function (fileName) {
     if (fileName === undefined) return;
-    fs.writeFile(fileName, editor.innerHTML, function (err) {   
+    fs.writeFile(fileName, editor.value, function (err) {   
     });
   }); 
 }
