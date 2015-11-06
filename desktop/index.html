@@ -6,124 +6,124 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700|Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
             <title>Peanut - Notes in a Nutshell</title>
+            <!-- Code Mirror -->
+             <link rel='stylesheet prefetch' href='http://codemirror.net/lib/codemirror.css'>
 
-            <!-- Bootstrap CSS -->
-            <!-- <link rel="stylesheet" type="text/css" href="github-markdown.css"/> -->
+            <!--  -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/googlecode.min.css">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                 rel="stylesheet">
-               
                 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
                 <style>
-                *::-webkit-scrollbar { width: 0 !important }
-                body,#wrapper {
-                height:100vh;
-                margin: 0;
-                padding: 0;
-                width:100vw;
-                max-width: 100%;
-                overflow: hidden;
-                }
-                #writer,
-                #preview {
-                height: 99vh;
-                /*max-height:100000000009vh;*/
-                overflow: scroll;
-                width:50vw;
-                padding:1em;
-                display: inline-block;
-                margin: 8vh 0 0 0;
-                float:left;
-                }
-                #writer {
-                font-family: 'Roboto Slab', serif;
-                font-weight: normal;
-                font-size:1.2em;
-                border-right:1px solid #efefef;
-                overflow:scroll;
-                }
-                #preview {
-                font-family: 'Roboto', sans-serif;
-                 font-weight: normal;
-                /*background:#efefef;*/
-                border-right:1px solid #efefef;
-                overflow:scroll;
-                }
-               
-                #toolbar {
-                height:6.5vh;
-                color:#000;
-                line-height: 6vh;
-                border-bottom:1px solid #D7C514;
-                position: fixed;
-                width:100%;
-                background:#ffea15;
-                /*display:none;*/
-                }
-                #toolbar ul {
-                padding:0px;
-                margin:0px;
-                width:49vw;
-                }
-                #toolbar li {
-                display:inline-block;
-                list-style:none;
-                width:9.5%;
-                text-align: center;
-                }
-                #toolbar i {
-                color:#000;
-                vertical-align:middle;
-                cursor: pointer;
-                transition:0.2s all ease;
-                border-radius: 0%;
-                height:100%;
-    
-                line-height: 1.6em;
-                display: block;
-                }
-                #toolbar i:active {
-                background:#000;
-                color:#ffea15;
-                /*transition:0.5s all ease;*/
-                }
-				.disabled{
-					opacity: 0.5;
-					color:#000;
-					pointer:disabled;
-
-				}
-
-                pre {
-                background:#fff;
-                border-radius: 0;
-                }
-                textarea {
-                width:100%;
-                border:0px;
-                font-size:1.3em;
-                line-height: 1.7em;
-                }
-                textarea:focus,
-                div:focus{
-                outline: none;
-                }
-                button {
-                display:none;
-                }
-                img {
-                	margin: 0.5em 0;
-                }
-                .disabled {
-                    opacity: 0.5;
-                }
-                .emoji {
-                height: 1.2em;
-                width:auto;
-                display: inline-block;
-                clear:none;
-                margin: 0;
-                }
+                                *::-webkit-scrollbar { width: 0 !important }
+                                body,#wrapper {
+                                height:100vh;
+                                margin: 0;
+                                padding: 0;
+                                width:100vw;
+                                max-width: 100%;
+                                overflow: hidden;
+                                }
+                                .CodeMirror.cm-s-default,
+                                #writer,
+                                #preview {
+                                height: 99vh;
+                                /*max-height:100000000009vh;*/
+                                overflow: scroll;
+                                width:50vw;
+                                padding:1em;
+                                display: inline-block;
+                                margin: 8vh 0 0 0;
+                                float:left;
+                                }
+                                .CodeMirror.cm-s-default,
+                                #writer {
+                                font-family: 'Roboto Slab', serif;
+                                font-weight: normal;
+                                font-size:1.2em;
+                                border-right:1px solid #efefef;
+                                overflow:scroll;
+                                }
+                                #preview {
+                                font-family: 'Roboto', sans-serif;
+                                font-weight: normal;
+                                /*background:#efefef;*/
+                                border-right:1px solid #efefef;
+                                overflow:scroll;
+                                }
+                            
+                                #toolbar {
+                                height:6.5vh;
+                                color:#000;
+                                line-height: 6vh;
+                                border-bottom:1px solid #D7C514;
+                                position: fixed;
+                                width:100%;
+                                background:#ffea15;
+                                /*display:none;*/
+                                }
+                                #toolbar ul {
+                                padding:0px;
+                                margin:0px;
+                                width:49vw;
+                                }
+                                #toolbar li {
+                                display:inline-block;
+                                list-style:none;
+                                width:9.5%;
+                                text-align: center;
+                                }
+                                #toolbar i {
+                                color:#000;
+                                vertical-align:middle;
+                                cursor: pointer;
+                                transition:0.2s all ease;
+                                border-radius: 0%;
+                                height:100%;
+                    
+                                line-height: 1.6em;
+                                display: block;
+                                }
+                                #toolbar i:active {
+                                background:#000;
+                                color:#ffea15;
+                                /*transition:0.5s all ease;*/
+                                }
+                                .disabled{
+                                opacity: 0.2;
+                                color:#000;
+                                pointer:disabled;
+                                }
+                                pre {
+                                background:#fff;
+                                border-radius: 0;
+                                }
+                                textarea {
+                                width:100%;
+                                border:0px;
+                                font-size:1.3em;
+                                line-height: 1.7em;
+                                }
+                                textarea:focus,
+                                div:focus{
+                                outline: none;
+                                }
+                                button {
+                                display:none;
+                                }
+                                img {
+                                margin: 0.5em 0;
+                                }
+                                .disabled {
+                                    opacity: 0.5;
+                                }
+                                .emoji {
+                                height: 1.2em;
+                                width:auto;
+                                display: inline-block;
+                                clear:none;
+                                margin: 0;
+                                }
                 </style>
                 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
                 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -133,46 +133,42 @@
                 <![endif]-->
             </head>
             <body>
-
                 <div id="wrapper">
                     <div id="toolbar">
                         <ul class=" pull-left">
-                            <li>		<i id="italic" class="material-icons ">format_italic</i></li>
-                            <li>		<i id="link" class="material-icons ">link</i></li>
-                            <li>		<i id="strike" class="material-icons">strikethrough_s</i></li>
-                            <li>		<i id="list" class="material-icons ">list</i></li>
-                            <li>		<i id="quote" class="material-icons ">format_quote</i></li>
-                            <li>		<i id="image" class="material-icons ">image</i></li>
-                            <li>		<i id="emoji" class="material-icons ">tag_faces</i></li>
-                            <li>		<i id="code" class="material-icons ">code</i></li>
-                            <!-- <li class="disabled">		<i disabled id="" class="disabled material-icons ">add_box</i></li> -->
+                            <li>        <i id="italic" class="material-icons ">format_italic</i></li>
+                            <li>        <i id="link" class="material-icons ">link</i></li>
+                            <li>        <i id="strike" class="material-icons">strikethrough_s</i></li>
+                            <li>        <i id="list" class="material-icons ">list</i></li>
+                            <li>        <i id="quote" class="material-icons ">format_quote</i></li>
+                            <li>        <i id="image" class="material-icons ">image</i></li>
+                            <li>        <i id="emoji" class="material-icons ">tag_faces</i></li>
+                            <li>        <i id="code" class="material-icons ">code</i></li>
+                            <!-- <li class="disabled">      <i disabled id="" class="disabled material-icons ">add_box</i></li> -->
                         </ul>
                         <ul class="pull-right">
                             <li class="pull-right">     <i id="export_file" class="material-icons">exit_to_app</i></li>
-
-                            <li class="pull-right">		<i id="save_file" class="material-icons ">save</i></li>
+                            <li class="pull-right">     <i id="save_file" class="material-icons ">save</i></li>
                             <li class="pull-right"><i id="open_file" class="material-icons" >folder_open</i></li>
-                            <li class="pull-right disabled">		<i id="settings" class="material-icons">settings</i></li>
+                            <li class="pull-right disabled">        <i id="settings" class="material-icons">settings</i></li>
                         </ul>
                     </div>
-                   
-<textarea id="writer" col="80">
-</textarea>
-                    <div id="preview">
 
-                    </div>
+                    <textarea id="writer" col="80"></textarea>
+                    <div id="preview"></div>
                 </div>
                 <script>
-                require(__dirname +'/desktop-run.js');
                 
+
+                require(__dirname +'/desktop-run.js');                
                 </script>
                 <!-- jQuery -->
-                 <script type="text/javascript">
-                 require('jquery');
-                 </script>
+                <script type="text/javascript">
+                                require('jquery');
+                </script>
+               
                 <!-- Bootstrap JavaScript -->
                 <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
                 <!-- <script src="https//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script> -->
-
             </body>
         </html>

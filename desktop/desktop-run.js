@@ -1,5 +1,23 @@
 //Fs file system
 var fs = require('fs');
+var storage = require('local-storage-json');
+require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/gfm/gfm');
+
+var CodeMirror = require('codemirror/lib/codemirror');
+
+//TODO: Setup Color Coding
+var writer = document.getElementById('writer');
+var doc = CodeMirror.fromTextArea(writer, {
+     lineNumbers: false,
+     mode: {
+      name: 'markdown',
+      highlightFormatting: true
+     },
+      theme: "default"
+    
+ });
+// console.log(doc.getValue());
 //var codemirror = require('codemirror');
 // Setup codemirror
 
@@ -7,15 +25,9 @@ var fs = require('fs');
 var remote = require('remote'); 
 var dialog = remote.require('dialog'); 
 //Gets the markdown info
-var doc = document.getElementById('writer');
 var preview_bucket = document.getElementById('preview');
 
-//TODO: Setup Color Coding.
-// codemirror.fromTextArea(doc, {
-//     lineNumbers: true,
-//     mode: 'GFM'
-    
-// });
+
 
 
 
@@ -68,11 +80,11 @@ md.renderer.rules.emoji = function(token, idx) {
 
 function insertAtCaret(text) {
     var lasttext = document.getElementById('writer');
-    var oldtext = lasttext.value;
+    var oldtext = lasttext.getValue();
     var curpos = lasttext.selectionStart;
     pretext = oldtext.substring(0,curpos);
     posttest = oldtext.substring(curpos,oldtext.length);
-    lasttext.value = pretext + text + posttest;
+    lasttext.getValue() = pretext + text + posttest;
 }
 
 
@@ -82,7 +94,7 @@ var preview = md.render(doc);
 preview_bucket.innerHTML = preview;
 }
 
-//Opens a file and puts it into the text area
+//TODO: Codemirror broke Saving
 function openFile(editor){
 	dialog.showOpenDialog({ filters: [
    { name: 'text', extensions: ['md'] }
@@ -90,20 +102,21 @@ function openFile(editor){
   if (fileNames === undefined) return;
   var fileName = fileNames[0];
   fs.readFile(fileName, 'utf-8', function (err, data) {
-   	editor.text = data; 
-    editor.value = data;  
-   	updatePreview(editor.text);
+   	// editor.text = data; 
+
+    editor.setValue(data);  
+   	updatePreview(editor.getValue());
  		});
  	});
 }
 
-//save file to disk
+//Saves File
 function saveFile(editor){
-	 dialog.showSaveDialog({ filters: [
-     { name: 'text', extensions: ['md'] }
-    ]}, function (fileName) {
+	dialog.showSaveDialog({ filters: [
+   { name: 'text', extensions: ['md'] }
+    ]},function (fileName) {
     if (fileName === undefined) return;
-    fs.writeFile(fileName, editor.value, function (err) {   
+    fs.writeFile(fileName, editor.getValue(), function (err) {   
     });
   }); 
 }
@@ -146,7 +159,12 @@ function saveFilePreview(editor){
 /*=============================
 =       Show Preview             =
 =============================*/
-doc.addEventListener('input', function(){ updatePreview(doc.value) });
+doc.on('change',function(){
+  // get value right from instance
+  updatePreview(doc.getValue());
+});
+
+// doc.addEventListener('input', function(){ updatePreview(doc.getValue()) });
 
 /*======================================
 =            Toolbar button            =
@@ -184,51 +202,56 @@ export_btn.addEventListener('click', function(){ saveFilePreview(document.getEle
 settings_btn.addEventListener('click', function(){ alert('Settings coming soon 0:)') });
 
 
-/*========================================
-=            Write click Menu            =
-========================================*/
-var remote = require('remote');
-// var Menu = remote.require('menu');
-// var MenuItem = remote.require('menu-item');
-
-// var menu = new Menu();
-// menu.append(new MenuItem({ label: 'Open', click: function() { openFile(document.getElementById('writer'));  } }));
-// menu.append(new MenuItem({ label: 'Save', click: function() { saveFile(document.getElementById('writer'));  } }));
-// menu.append(new MenuItem({ label: 'Export as HTML', click: function() { saveFilePreview(document.getElementById('preview'));  } }));
-
-
-
-// var main_menu = new Menu();
-// Menu.setApplicationMenu(main_menu);
-
-
 /*====================================
 =            Default Menu            =
 ====================================*/
-var Menu = require("menu");
+// var Menu = require("menu");
 
-var template = [{
-    label: "Application",
-    submenu: [
-        { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
-        { type: "separator" },
-        { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
-    ]}, {
-    label: "Edit",
-    submenu: [
-        { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-        { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-        { type: "separator" },
-        { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-        { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-        { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
-    ]}
-];
+// var template = [{
+//     label: "Application",
+//     submenu: [
+//         { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+//         { type: "separator" },
+//         { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+//     ]}, {
+//     label: "Edit",
+//     submenu: [
+//         { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+//         { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+//         { type: "separator" },
+//         { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+//         { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+//         { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+//         { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+//     ]}
+// ];
 
-Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+// Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
-window.addEventListener('contextmenu', function (e) {
-  e.preventDefault();
-  Menu.popup(remote.getCurrentWindow());
-}, false);
+// window.addEventListener('contextmenu', function (e) {
+//   e.preventDefault();
+//   Menu.popup(remote.getCurrentWindow());
+// }, false);
+
+/*=============================================
+=            Settings JSON            =
+=============================================*/
+// var store = new Lawnchair({name:'testing'}, function(store) {
+
+//     // Create an object
+//     var me = {key:'brian'};
+
+//     // Save it
+//     store.save(me);
+
+//     // Access it later... Yes even after a page refresh!
+//     store.get('brian', function(me) {
+//         console.log(me);
+//     });
+// });
+
+
+
+
+
+
