@@ -1,0 +1,130 @@
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,700|Roboto+Slab:400,700,300");
+@import url("codemirror.css");
+@import url("codeblock_highlighting.min.css");
+@import url("http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+
+           *::-webkit-scrollbar {
+               width: 0 !important
+           }
+           
+           body, #wrapper {
+               height: 100vh;
+               margin: 0;
+               padding: 0;
+               width: 100vw;
+               max-width: 100%;
+               overflow: hidden;
+           }
+           
+           .CodeMirror.cm-s-default, #writer, #preview {
+               height: 99vh;
+               overflow: scroll;
+               width: 50vw;
+               padding: 1em;
+               display: inline-block;
+               margin: 8vh 0 0 0;
+               float: left;
+           }
+           
+           .CodeMirror.cm-s-default, #writer {
+               font-family: 'Roboto Slab', serif;
+               font-weight: normal;
+               font-size: 1.2em;
+               border-right: 1px solid #efefef;
+               overflow: scroll;
+           }
+           
+           #preview {
+               font-family: 'Roboto', sans-serif;
+               font-weight: normal;
+               /*background:#efefef;*/
+               border-right: 1px solid #efefef;
+               overflow: scroll;
+           }
+           
+           #toolbar {
+               height: 6.5vh;
+               min-height: 30px;
+               color: #000;
+               line-height: 6vh;
+               border-bottom: 1px solid #D7C514;
+               position: fixed;
+               width: 100%;
+               background: #ffea15;
+               /*display:none;*/
+           }
+           
+           #toolbar ul {
+               padding: 0px;
+               margin: 0px;
+               width: 49vw;
+           }
+           
+           #toolbar li {
+               display: inline-block;
+               list-style: none;
+               width: 9.5%;
+               text-align: center;
+           }
+           
+           #toolbar i {
+               color: #000;
+               vertical-align: middle;
+               cursor: pointer;
+               transition: 0.2s all ease;
+               border-radius: 0%;
+               height: 6.5vh;
+               line-height: 6.5vh;
+               display: block;
+           }
+           
+           #toolbar i:active {
+               background: #000;
+               color: #ffea15;
+               /*transition:0.5s all ease;*/
+           }
+           
+           .disabled {
+               opacity: 0.2;
+               color: #000;
+               pointer: disabled;
+           }
+           
+           pre {
+               background: #fff;
+               border-radius: 0;
+           }
+           
+           textarea {
+               width: 100%;
+               border: 0px;
+               font-size: 1.3em;
+               line-height: 1.7em;
+           }
+           
+           textarea:focus, div:focus {
+               outline: none;
+           }
+           
+           button {
+               display: none;
+           }
+           
+           img {
+               margin: 0.5em 0;
+           }
+           
+           .disabled {
+               opacity: 0.5;
+           }
+           
+           .emoji {
+               height: 1.2em;
+               width: auto;
+               display: inline-block;
+               clear: none;
+               margin: 0;
+           }

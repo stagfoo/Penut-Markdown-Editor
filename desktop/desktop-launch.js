@@ -19,19 +19,29 @@ app.on('window-all-closed', function() {
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
+
+  
 app.on('ready', function() {
   // Create the browser window.
+  if (process.platform != 'darwin') {
   mainWindow = new BrowserWindow({
 		width:800,
 		height:600,
-		icon: ( __dirname +'/icon.png' )
+		icon: ( __dirname +'/img/icon.png' )
 	});
+  } else {
+     mainWindow = new BrowserWindow({
+    width:800,
+    height:600,
+    icon: ( __dirname +'/img/icon.icns' )
+  });
+  }
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
- mainWindow.openDevTools();
+ // mainWindow.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

@@ -1,15 +1,20 @@
-//Fs file system
-var fs = require('fs');
-var storage = require('local-storage-json');
+/*====================================
+=            REQUIREMENTS            =
+====================================*/
+var fs = require('fs'); //For saving files
+var storage = require('local-storage-json'); //for saving settings
+
 require('codemirror/mode/markdown/markdown');
 require('codemirror/mode/gfm/gfm');
+var CodeMirror = require('codemirror/lib/codemirror'); //coloring markdown
 
-var CodeMirror = require('codemirror/lib/codemirror');
+/*----------  Code coloring on Writer side  ----------*/
 
-//TODO: Setup Color Coding
+//TODO: Write better color coding / Fix Toolbar
 var writer = document.getElementById('writer');
 var doc = CodeMirror.fromTextArea(writer, {
      lineNumbers: false,
+     lineWrapping: true,
      mode: {
       name: 'markdown',
       highlightFormatting: true
@@ -17,21 +22,20 @@ var doc = CodeMirror.fromTextArea(writer, {
       theme: "default"
     
  });
-// console.log(doc.getValue());
-//var codemirror = require('codemirror');
-// Setup codemirror
+/*----------  END Code coloring on Writer side  ----------*/
 
-//used to create the menu
-var remote = require('remote'); 
-var dialog = remote.require('dialog'); 
-//Gets the markdown info
-var preview_bucket = document.getElementById('preview');
+
+var remote = require('remote'); //used to create the menu
+var dialog = remote.require('dialog'); //this is get system dialogs
+var preview_bucket = document.getElementById('preview'); //Gets the markdown info
 
 
 
 
 
-
+/*========================================
+=            Parsing Markdown            =
+========================================*/
 var export_doc;
 //Parse Markdown
 var markdown = require( "markdown" ).markdown;
@@ -57,34 +61,17 @@ md.renderer.rules.emoji = function(token, idx) {
 /*===============================================
 =            Insert Markdown Presets            =
 ===============================================*/
+//TODO: re-write for Codemirror
 // function insertAtCaret(text) {
-  
-//     var txtarea = document.getElementById('writer');
-//     var scrollPos = txtarea.scrollTop;
-//     var caretPos = txtarea.selectionStart;
 
-//     var front = (txtarea.innerHTML).substring(0, caretPos);
-//     var back = (txtarea.innerHTML).substring(txtarea.selectionEnd, txtarea.innerHTML.length);
-//     console.log(front);
-//     console.log(back);
-//     console.log(caretPos);
-
-//     txtarea.innerHTML = "";
-//     txtarea.innerHTML = front + text + back;
-//     caretPos = caretPos + text.length;
-//     txtarea.selectionStart = caretPos;
-//     txtarea.selectionEnd = caretPos;
-//     txtarea.focus();
-//     txtarea.scrollTop = scrollPos;
-// }
-
-function insertAtCaret(text) {
-    var lasttext = document.getElementById('writer');
-    var oldtext = lasttext.getValue();
-    var curpos = lasttext.selectionStart;
-    pretext = oldtext.substring(0,curpos);
-    posttest = oldtext.substring(curpos,oldtext.length);
-    lasttext.getValue() = pretext + text + posttest;
+function insertAtCaret(data) {
+    var cursor = doc.getCursor(); // gets the line number in the cursor position
+    var line = doc.getLine(cursor.line); // get the line contents
+    var pos = { // create a new object to avoid mutation of the original selection
+        line: cursor.line,
+        ch: line.length // set the character position to the end of the line
+    }
+    doc.replaceRange('\n'+data+'\n', pos); // adds a new line
 }
 
 
@@ -94,7 +81,12 @@ var preview = md.render(doc);
 preview_bucket.innerHTML = preview;
 }
 
-//TODO: Codemirror broke Saving
+
+/*=====================================
+=            FILE HANDLING            =
+=====================================*/
+//Open File 
+//TODO: open in new window
 function openFile(editor){
 	dialog.showOpenDialog({ filters: [
    { name: 'text', extensions: ['md'] }
@@ -123,10 +115,12 @@ function saveFile(editor){
 //save HTML file to disk 
 // TODO: add wrapper for styles 
 
-
+/*===================================
+=            HTML EXPORT            =
+===================================*/
 var html_head;
 var html_footer;
-//get Wrappers
+//Get head
 fs.readFile( __dirname +'/head.html', function (err, data) {
   if (err) {
     throw err; 
@@ -163,12 +157,10 @@ doc.on('change',function(){
   // get value right from instance
   updatePreview(doc.getValue());
 });
-
-// doc.addEventListener('input', function(){ updatePreview(doc.getValue()) });
-
 /*======================================
 =            Toolbar button            =
 ======================================*/
+var heading_btn = document.getElementById('heading');
 var italic_btn = document.getElementById('italic');
 var link_btn = document.getElementById('link');
 var strike_btn = document.getElementById('strike');
@@ -177,18 +169,19 @@ var quote_btn = document.getElementById('quote');
 var image_btn = document.getElementById('image');
 var emoji_btn = document.getElementById('emoji');
 var code_btn = document.getElementById('code');
-var checkbox_btn = document.getElementById('checkbox');
+// var checkbox_btn = document.getElementById('checkbox');
 var settings_btn = document.getElementById('settings');
 
+heading_btn.addEventListener('click', function(){ insertAtCaret('#') });
 italic_btn.addEventListener('click', function(){ insertAtCaret('**') });
-link_btn.addEventListener('click', function(){ insertAtCaret('[link](http)') });
+link_btn.addEventListener('click', function(){ insertAtCaret('[text](http)') });
 strike_btn.addEventListener('click', function(){ insertAtCaret('~~ ~~') });
 list_btn.addEventListener('click', function(){ insertAtCaret('- ') });
 quote_btn.addEventListener('click', function(){ insertAtCaret('>') });
-image_btn.addEventListener('click', function(){ insertAtCaret('![meta](http)') });
+image_btn.addEventListener('click', function(){ insertAtCaret('![alt](http)') });
 emoji_btn.addEventListener('click', function(){ insertAtCaret(':)') });
 code_btn.addEventListener('click', function(){ insertAtCaret('``` ```') });
-// checkbox_btn.addEventListener('click', function(){ insertAtCaret('- [x]') });
+// checkbox_btn.addEventListener('click', function(){ insertAtCaret('- [x] 1.') });
 
 //creates buttons to save the document(not used currently)
 var open_btn = document.getElementById('open_file');

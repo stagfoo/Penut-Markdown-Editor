@@ -2,7 +2,7 @@
   "name": "Peanut-Markdown-Editor",
   "version": "0.0.3",
   "description": "a simple cross platform markdown editor",
-  "main": "desktop-start.js",
+  "main": "desktop-launch.js",
   "dependencies": {
     "electron-prebuilt": "*",
     "markdown": "*",
