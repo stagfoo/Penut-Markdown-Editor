@@ -121,14 +121,14 @@ function saveFile(editor){
 var html_head;
 var html_footer;
 //Get head
-fs.readFile( __dirname +'/head.html', function (err, data) {
+fs.readFile( __dirname +'/lib/head.html', function (err, data) {
   if (err) {
     throw err; 
   }
  html_head = data.toString();
 });
 //Load footer
-fs.readFile( __dirname +'/footer.html', function (err, data) {
+fs.readFile( __dirname +'/lib/footer.html', function (err, data) {
   if (err) {
     throw err; 
   }

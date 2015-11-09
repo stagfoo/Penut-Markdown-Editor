@@ -43,6 +43,7 @@
                /*background:#efefef;*/
                border-right: 1px solid #efefef;
                overflow: scroll;
+                height: 91vh;
            }
            
            #toolbar {
