@@ -4,7 +4,11 @@
   "description": "a simple cross platform markdown editor",
   "main": "desktop-launch.js",
   "dependencies": {
-    "electron-prebuilt": "*",
+    "electron-prebuilt": "v0.34.3",
+    "codemirror": "*",
+    "webpack": "*",
+    "local-storage-json": "*",
+    "node-sass": "*",
     "markdown": "*",
     "markdown-it": "*",
     "markdown-it-checkbox": "*",
@@ -20,5 +24,9 @@
     "start": "electron ."
   },
   "author": "stagfoo",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "electron": "^1.4.5",
+    "local-storage-json": "0.0.1"
+  }
 }
